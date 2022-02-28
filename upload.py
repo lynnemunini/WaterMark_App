@@ -8,8 +8,10 @@ root.title('Upload Image')
 root.resizable(True, True)
 
 
+
 def open():
         global my_image
+        
         filetypes = (
                 ('png files', '*.png'),
                 ('all files', '*.*')
@@ -19,11 +21,17 @@ def open():
                 initialdir='/home/lynne/Pictures',
                 filetypes=filetypes)
 
-        # my_label = Label(root, text=root.filename).pack()
-        my_image = ImageTk.PhotoImage(Image.open(root.filename))
-        my_image_label = Label(image=my_image).pack()
+        my_image = Image.open(root.filename)
+        h = my_image.height
+        print(h)
+        w = my_image.width
+        print(w)
+        my_image = my_image.resize((int(w/2), int(h/2)), Image.ANTIALIAS)
+        my_image = ImageTk.PhotoImage(my_image)
+        my_image_label = Label(image=my_image).pack()        
 
 btn = Button(root, text="Select File", command=open).pack()
+
 
 # run the application
 root.mainloop()
