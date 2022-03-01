@@ -1,3 +1,4 @@
+from re import I
 from tkinter import *
 from tkinter import filedialog as fd
 from PIL import ImageTk, Image
@@ -27,12 +28,14 @@ def get_image():
         my_image = my_image.resize((int(w/2), int(h/2)), Image.ANTIALIAS)
         my_image = ImageTk.PhotoImage(my_image)
 
-        change_btn = Button(text='Change Image', command=lambda: change_image())
-        save_btn = Button(text='Save Image')
 
+        #Image Canvas
         image_canvas = Canvas(width=1000, height=600, bg="white", highlightthickness=0)
         image_canvas.create_image(500, 350, image=my_image)
         image_canvas.place(x=0, y=50)
+
+        change_btn = Button(text='Change Image', command=lambda: change_image(image_canvas))
+        save_btn = Button(text='Save Image')
         change_btn.place(x=300, y=700) 
         save_btn.place(x=600, y=700)
 
@@ -42,7 +45,8 @@ def open():
         btn.destroy()
         get_image()   
 
-def change_image():
+def change_image(image_canvas):
+        image_canvas.destroy()
         get_image()
 
         
