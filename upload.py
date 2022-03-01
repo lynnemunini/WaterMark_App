@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 # create the root window
 root = Tk()
 root.title('Upload Image')
-root.resizable(True, True)
+root.resizable(False, False)
 root.geometry("1000x800")
 root.configure(bg='white') 
 
@@ -22,6 +22,9 @@ def get_image():
                 initialdir='/home/lynne/Pictures',
                 filetypes=filetypes)
 
+        # Picture name 
+        pic_name = root.filename.split('/')[-1]
+
         my_image = Image.open(root.filename)
         h = my_image.height
         w = my_image.width
@@ -35,7 +38,7 @@ def get_image():
         image_canvas.place(x=0, y=50)
 
         change_btn = Button(text='Change Image', command=lambda: change_image(image_canvas))
-        save_btn = Button(text='Save Image')
+        save_btn = Button(text='Save', command=lambda: save(pic_name))
         change_btn.place(x=300, y=700) 
         save_btn.place(x=600, y=700)
 
@@ -48,6 +51,16 @@ def open():
 def change_image(image_canvas):
         image_canvas.destroy()
         get_image()
+
+
+# open and ask to save file
+def save(name):
+    f = fd.asksaveasfile(mode='w')
+    if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
+        return
+    f.write(name)
+    f.close()
+
 
         
 btn = Button(root, text="Select File", command=lambda: open())
