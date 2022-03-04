@@ -1,7 +1,7 @@
-from re import I
 from tkinter import *
 from tkinter import filedialog as fd
 from PIL import ImageTk, Image
+import os
 
 # create the root window
 root = Tk()
@@ -11,8 +11,7 @@ root.geometry("1000x800")
 root.configure(bg='white') 
 
 
-def get_image():
-        global my_image        
+def get_image():      
         filetypes = (
                 ('png files', '*.png'),
                 ('all files', '*.*')
@@ -26,10 +25,12 @@ def get_image():
         pic_name = root.filename.split('/')[-1]
 
         my_image = Image.open(root.filename)
-        h = my_image.height
-        w = my_image.width
-        my_image = my_image.resize((int(w/2), int(h/2)), Image.ANTIALIAS)
+        # h = my_image.height
+        # w = my_image.width
+        # my_image = my_image.resize((int(w/2), int(h/2)), Image.ANTIALIAS)
         my_image = ImageTk.PhotoImage(my_image)
+
+        
 
 
         #Image Canvas
@@ -38,11 +39,9 @@ def get_image():
         image_canvas.place(x=0, y=50)
 
         change_btn = Button(text='Change Image', command=lambda: change_image(image_canvas))
-        save_btn = Button(text='Save', command=lambda: save(pic_name))
+        save_btn = Button(text='Save', command=lambda: save(my_image, pic_name))
         change_btn.place(x=300, y=700) 
-        save_btn.place(x=600, y=700)
-
-        
+        save_btn.place(x=600, y=700)        
 
 def open():
         btn.destroy()
@@ -54,13 +53,10 @@ def change_image(image_canvas):
 
 
 # open and ask to save file
-def save(name):
-    f = fd.asksaveasfile(mode='w')
-    if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
-        return
-    f.write(name)
-    f.close()
-
+def save(image, name):
+        imgpil = ImageTk.getimage( image )
+        imgpil.save( os.path.join("/home/lynne/Pictures", name), "png" )
+        imgpil.close()        
 
         
 btn = Button(root, text="Select File", command=lambda: open())
