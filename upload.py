@@ -25,7 +25,6 @@ file_menu = Menu(
 )
 
 # add menu items to the File menu
-file_menu.add_command(label='New')
 file_menu.add_command(label='Open',
                 command=lambda: open()
                 )
@@ -124,14 +123,16 @@ def save():
         imgpil.save( os.path.join("/home/lynne/Pictures", pic_name), "png" )
         imgpil.close()        
 
-
 #Main Window Image       
 main_image = Image.open("crayon-image-settings.png")
 main_image = main_image.resize((500, 500))
 main_image = ImageTk.PhotoImage(main_image) 
 image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
-image_canvas.create_image(500, 400, image=main_image)
+image_canvas.create_image(200, 400, image=main_image)
 image_canvas.grid(row = 0, column = 1)
+
+intro = Label(text="Brand your Image")
+intro.grid(row = 0, column = 0, padx=100)
 
 # run the application
 root.mainloop()
