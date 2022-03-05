@@ -104,12 +104,10 @@ def get_image():
         #Image Canvas
         image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
         image_canvas.create_image(400, 400, image=my_image)
-        # image_canvas.place(x=0, y=0)
         image_canvas.grid(row = 0, column = 0, columnspan=2)
 
 
 def open():
-        # btn.destroy()
         get_image()   
 
 def change_image(image_canvas):
@@ -121,18 +119,27 @@ def change_image(image_canvas):
 def save():
         imgpil = ImageTk.getimage(my_image)
         imgpil.save( os.path.join("/home/lynne/Pictures", pic_name), "png" )
-        imgpil.close()        
+        imgpil.close()  
+
+intro_frame = Frame(root)
+# Main window text
+intro = Label(intro_frame, text="Brand your Image")
+intro.pack(pady=20)   
+
+# Get started button
+get_started = Button(intro_frame, text="Get Started", command=open)
+get_started.pack()
 
 #Main Window Image       
 main_image = Image.open("crayon-image-settings.png")
 main_image = main_image.resize((500, 500))
 main_image = ImageTk.PhotoImage(main_image) 
-image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
-image_canvas.create_image(200, 400, image=main_image)
-image_canvas.grid(row = 0, column = 1)
+image_canvas = Canvas(width=600, height=600, bg="white", highlightthickness=0)
+image_canvas.create_image(220, 400, image=main_image)
+image_canvas.grid(row = 0, column = 1, rowspan = 2)
 
-intro = Label(text="Brand your Image")
-intro.grid(row = 0, column = 0, padx=100)
+intro_frame.grid(row =1, column = 0, padx=100)
+
 
 # run the application
 root.mainloop()
