@@ -122,7 +122,12 @@ def get_image():
 
 
 def open():
-        get_image()   
+    # Remove from screen:
+    for label in root.grid_slaves():
+        # Remove all widgets with row numbers < 4
+        if int(label.grid_info()["row"]) < 4:
+            label.grid_forget()
+    get_image()   
 
 def change_image(image_canvas):
         image_canvas.destroy()
