@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.font import Font
 from tkinter import filedialog as fd
 from PIL import ImageTk, Image
 import os
@@ -8,20 +9,21 @@ root = Tk()
 root.title('Upload Image')
 root.resizable(False, False)
 root.geometry("800x800")
-root.configure(bg='white') 
+root.configure(bg='white')
 
 # get the screen size
 scr_width = root.winfo_screenwidth()
 scr_height = root.winfo_screenheight()
 
 # create a menubar
-menubar = Menu(root)
+menubar = Menu(root, background="white")
 root.config(menu=menubar)
 
 # create the file_menu
 file_menu = Menu(
     menubar,
-    tearoff=0
+    tearoff=0,
+    background='#e46c4e'
 )
 
 # add menu items to the File menu
@@ -49,7 +51,8 @@ menubar.add_cascade(
 # create the edit_menu
 edit_menu = Menu(
     menubar,
-    tearoff=0
+    tearoff=0,
+    background='#e46c4e'
 )
 
 # add menu items to the File menu
@@ -66,7 +69,8 @@ menubar.add_cascade(
 # create the Help menu
 help_menu = Menu(
     menubar,
-    tearoff=0
+    tearoff=0,
+    background='#e46c4e'
 )
 
 help_menu.add_command(label='Welcome')
@@ -121,13 +125,13 @@ def save():
         imgpil.save( os.path.join("/home/lynne/Pictures", pic_name), "png" )
         imgpil.close()  
 
-intro_frame = Frame(root)
+intro_frame = Frame(root, background="white")
 # Main window text
-intro = Label(intro_frame, text="Brand your Image")
+intro = Label(intro_frame, text="Brand your Image.", background="white", font=("Montserrat", 16, "bold"))
 intro.pack(pady=20)   
 
 # Get started button
-get_started = Button(intro_frame, text="Get Started", command=open)
+get_started = Button(intro_frame, height= 2, width=10, text="Get Started", background="#343434", fg ="white", font=("Poppins"), command=open)
 get_started.pack()
 
 #Main Window Image       
@@ -138,7 +142,7 @@ image_canvas = Canvas(width=600, height=600, bg="white", highlightthickness=0)
 image_canvas.create_image(220, 400, image=main_image)
 image_canvas.grid(row = 0, column = 1, rowspan = 2)
 
-intro_frame.grid(row =1, column = 0, padx=100)
+intro_frame.grid(row =1, column = 0, padx=50)
 
 
 # run the application
