@@ -16,14 +16,18 @@ scr_width = root.winfo_screenwidth()
 scr_height = root.winfo_screenheight()
 
 # create a menubar
-menubar = Menu(root, background="#464646", borderwidth=0, fg="#e5dedc")
+menubar = Menu(root, background="#464646", borderwidth=0, fg="white", activebackground='#464646', activeforeground='#e5dedc')
 root.config(menu=menubar)
 
+# '#e46c4e'
 # create the file_menu
 file_menu = Menu(
     menubar,
     tearoff=0,
-    background='#e46c4e'
+    background="#646463",
+    activebackground='#e46c4e',
+    fg="white",
+    activeforeground='white'
 )
 
 # add menu items to the File menu
@@ -37,7 +41,7 @@ file_menu.add_command(label='Close')
 file_menu.add_separator()
 
 # add Exit menu item
-file_menu.add_command(#343434
+file_menu.add_command(
     label='Exit',
     command=root.destroy
 )
@@ -52,7 +56,10 @@ menubar.add_cascade(
 edit_menu = Menu(
     menubar,
     tearoff=0,
-    background='#e46c4e'
+    background="#646463",
+    fg="white",
+    activebackground='#e46c4e',
+    activeforeground='white'
 )
 
 # add menu items to the File menu
@@ -70,11 +77,14 @@ menubar.add_cascade(
 help_menu = Menu(
     menubar,
     tearoff=0,
-    background='#e46c4e'
+    background="#646463",
+    fg="white",
+    activebackground='#e46c4e',
+    activeforeground='white'
 )
 
 help_menu.add_command(label='Welcome')
-help_menu.add_command(label='About')#343434
+help_menu.add_command(label='About')
 
 # add the Help menu to the menubar
 menubar.add_cascade(
