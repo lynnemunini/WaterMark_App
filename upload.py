@@ -16,7 +16,7 @@ scr_width = root.winfo_screenwidth()
 scr_height = root.winfo_screenheight()
 
 # create a menubar
-menubar = Menu(root, background="white")
+menubar = Menu(root, background="#464646", borderwidth=0, fg="#e5dedc")
 root.config(menu=menubar)
 
 # create the file_menu
@@ -37,7 +37,7 @@ file_menu.add_command(label='Close')
 file_menu.add_separator()
 
 # add Exit menu item
-file_menu.add_command(
+file_menu.add_command(#343434
     label='Exit',
     command=root.destroy
 )
@@ -74,7 +74,7 @@ help_menu = Menu(
 )
 
 help_menu.add_command(label='Welcome')
-help_menu.add_command(label='About')
+help_menu.add_command(label='About')#343434
 
 # add the Help menu to the menubar
 menubar.add_cascade(
