@@ -141,7 +141,7 @@ intro = Label(intro_frame, text="Brand your Image.", background="white", font=("
 intro.pack(pady=20)   
 
 # Get started button
-get_started = Button(intro_frame, height= 2, width=10, text="Get Started", background="#343434", fg ="white", font=("Poppins"), command=open)
+get_started = Button(intro_frame, height= 2, width=10, text="Get Started", background="#343434", fg ="white", activebackground='#e46c4e', font=("Poppins"), command=open)
 get_started.pack()
 
 #Main Window Image       
