@@ -145,12 +145,12 @@ intro_frame = Frame(root, background="white")
 intro = Label(intro_frame, text="Brand your Image.", background="white", font=("Montserrat", 22, "bold"))
 intro.pack(pady=20)   
 
-intro_text = Label(intro_frame, text="Our new service makes it easy for you\nto add watermarks to your images.", background="white", font=("Montserrat", 12))
+intro_text = Label(intro_frame, text="Our new service makes it easy for you\nto add watermarks to your images.", background="white", font=("Poppins", 12))
 intro_text.pack()
 
 # Get started button
-get_started = Button(intro_frame, height= 2, width=10, text="Get Started", background="#343434", fg ="white", activebackground='#e46c4e', font=("Poppins"), command=open)
-get_started.pack(pady=20)
+get_started = Button(intro_frame, height= 2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
+get_started.pack(side=LEFT, pady=60)
 
 #Main Window Image       
 main_image = Image.open("crayon-image-settings.png")
