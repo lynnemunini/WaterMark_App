@@ -8,7 +8,7 @@ import os
 root = Tk()
 root.title('Upload Image')
 root.resizable(False, False)
-root.geometry("800x800")
+root.geometry("850x800")
 root.configure(bg='white')
 
 # get the screen size
@@ -100,7 +100,7 @@ def get_image():
         )
         root.filename = fd.askopenfilename(
                 title='Open a file',
-                initialdir='/home/lynne/Pictures',
+                initialdir='~',
                 filetypes=filetypes)
 
         # Picture name 
@@ -142,12 +142,15 @@ def save():
 
 intro_frame = Frame(root, background="white")
 # Main window text
-intro = Label(intro_frame, text="Brand your Image.", background="white", font=("Montserrat", 16, "bold"))
+intro = Label(intro_frame, text="Brand your Image.", background="white", font=("Montserrat", 22, "bold"))
 intro.pack(pady=20)   
+
+intro_text = Label(intro_frame, text="Our new service makes it easy for you\nto add watermarks to your images.", background="white", font=("Montserrat", 12))
+intro_text.pack()
 
 # Get started button
 get_started = Button(intro_frame, height= 2, width=10, text="Get Started", background="#343434", fg ="white", activebackground='#e46c4e', font=("Poppins"), command=open)
-get_started.pack()
+get_started.pack(pady=20)
 
 #Main Window Image       
 main_image = Image.open("crayon-image-settings.png")
