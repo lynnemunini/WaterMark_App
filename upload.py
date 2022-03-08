@@ -142,8 +142,8 @@ def save():
 
 intro_frame = Frame(root, background="white")
 # Main window text
-intro = Label(intro_frame, text="Brand your Image.", background="white", font=("Montserrat", 22, "bold"))
-intro.pack(pady=20)   
+intro = Label(intro_frame, text="Brand your Image.", background="white", fg='#464646', font=("Montserrat", 22, "bold"))
+intro.pack(pady=50)   
 
 intro_text = Label(intro_frame, text="Our new service makes it easy for you\nto add watermarks to your images.", background="white", font=("Poppins", 12))
 intro_text.pack()
@@ -154,13 +154,13 @@ get_started.pack(side=LEFT, pady=60)
 
 #Main Window Image       
 main_image = Image.open("crayon-image-settings.png")
-main_image = main_image.resize((500, 500))
+main_image = main_image.resize((520, 600))
 main_image = ImageTk.PhotoImage(main_image) 
 image_canvas = Canvas(width=600, height=600, bg="white", highlightthickness=0)
-image_canvas.create_image(220, 400, image=main_image)
-image_canvas.grid(row = 0, column = 1, rowspan = 2)
+image_canvas.create_image(220, 350, image=main_image)
+image_canvas.grid(row = 0, column = 1, rowspan = 2, pady=50)
 
-intro_frame.grid(row =1, column = 0, padx=50)
+intro_frame.grid(row =1, column = 0, padx=40, pady=100)
 
 
 # run the application
