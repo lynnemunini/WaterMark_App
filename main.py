@@ -11,9 +11,6 @@ root.resizable(False, False)
 root.geometry("850x800")
 root.configure(bg='white')
 
-# Add image file
-bg_image = ImageTk.PhotoImage(file = "")
-
 # get the screen size
 scr_width = root.winfo_screenwidth()
 scr_height = root.winfo_screenheight()
@@ -22,7 +19,8 @@ scr_height = root.winfo_screenheight()
 menubar = Menu(root, background="#464646", borderwidth=0, fg="white", activebackground='#464646', activeforeground='#e5dedc')
 root.config(menu=menubar)
 
-# '#e46c4e'
+# Add image file
+bg_image = ImageTk.PhotoImage(file = "backgound.png")
 # create the file_menu
 file_menu = Menu(
     menubar,
@@ -117,7 +115,6 @@ def get_image():
                 my_image = my_image.resize((int(my_image.width*ratio), int(my_image.height*ratio)), Image.ANTIALIAS)
         my_image = ImageTk.PhotoImage(my_image)  
 
-
         #Image Canvas
         image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
         image_canvas.create_image(400, 400, image=my_image)
@@ -150,28 +147,9 @@ label = Label(
 )
 label.place(x=0, y=0)
 
-intro_frame = Frame(root, background="white")
-# Main window text
-intro = Label(intro_frame, text="Brand your Image.", background="white", fg='#464646', font=("Montserrat", 22, "bold"))
-intro.pack(pady=50)   
-
-intro_text = Label(intro_frame, text="Our new service makes it easy for you\nto add watermarks to your images.", background="white", font=("Lato", 13))
-intro_text.pack()
-
-# Get started button
-get_started = Button(intro_frame, height= 2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
-get_started.pack(side=LEFT, pady=60)
-
-#Main Window Image       
-main_image = Image.open("crayon-image-settings.png")
-main_image = main_image.resize((520, 600))
-main_image = ImageTk.PhotoImage(main_image) 
-image_canvas = Canvas(width=600, height=600, bg="white", highlightthickness=0)
-image_canvas.create_image(220, 350, image=main_image)
-image_canvas.grid(row = 0, column = 1, rowspan = 2, pady=50)
-
-intro_frame.grid(row =1, column = 0, padx=40, pady=100)
-
+# # Get started button
+# get_started = Button(intro_frame, height= 2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
+# get_started.pack(side=LEFT, pady=60)
 
 # run the application
 root.mainloop()
