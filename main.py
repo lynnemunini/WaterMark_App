@@ -38,7 +38,9 @@ file_menu.add_command(label='Open',
 file_menu.add_command(label='Save',
                 command=lambda: save()
                 )
-file_menu.add_command(label='Close')
+file_menu.add_command(label='Close',
+                command=lambda: close()
+)
 file_menu.add_separator()
 
 # add Exit menu item
@@ -94,7 +96,11 @@ menubar.add_cascade(
 )
 
 # Functions
-def get_image():      
+def get_image():    
+        edit_menu.entryconfig("Change Image", state="normal")#Enable Menu Option
+        file_menu.entryconfig("Save", state="normal")#Enable Menu Option
+        file_menu.entryconfig("Close", state="normal")#Enable Menu Option  
+         
         filetypes = (
                 ('png files', '*.png'),
                 ('all files', '*.*')
@@ -109,7 +115,7 @@ def get_image():
             get_started.destroy()
 
             # Picture name 
-            global pic_name, my_image
+            global pic_name, my_image, image_canvas
             pic_name = root.filename.split('/')[-1]
             my_image = Image.open(root.filename)
             if my_image.width > scr_width or my_image.height > scr_height:
@@ -132,8 +138,12 @@ def open():
             label.grid_forget()
     get_image()   
 
-def change_image(image_canvas):
+def change_image():
+    try:
         image_canvas.destroy()
+    except:
+        pass
+    else:
         get_image()
 
 
@@ -143,17 +153,51 @@ def save():
         imgpil.save( os.path.join("/home/lynne/Pictures", pic_name), "png" )
         imgpil.close()  
 
+def window():
+    global main_window, get_started
+    edit_menu.entryconfig("Change Image", state="disabled")#Disable Menu Option
+    file_menu.entryconfig("Save", state="disabled")#Disable Menu Option
+    file_menu.entryconfig("Close", state="disabled")#Disable Menu Option
+    
+    main_window = Label(
+        root,
+        image=bg_image
+    )
+    main_window.place(x=0, y=0)
 
-main_window = Label(
-    root,
-    image=bg_image
-)
-main_window.place(x=0, y=0)
+    # Get started button
+    get_started = Button(root, height=2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
+    get_started.place(x = 50, y = 450)
 
-# Get started button
-get_started = Button(root, height=2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
-get_started.place(x = 50, y = 450)
+def close():
+    try:
+        if pic_name is not None:
+            image_canvas.destroy()
+    except:
+        pass
+    else:
+        window()
 
-# run the application
-root.mainloop()
+# def edit():
+#     global pop
+#     pop = Toplevel(window)
+#     pop.geometry("510x100")
+#     pop.config(bg="white")
+
+    # if len(my_website) == 0 or len(my_password) == 0:
+    # pop.title("Oops!")
+    # pop_label = Label(pop, text="You have to select a file first.", bg=GREY,
+    #                     font=("courier", 12, "normal"))
+    # pop_label.grid(row=0, column=1, pady=10)
+    # my_frame = Frame(pop, bg=GREY)
+    # my_frame.grid(row=1, column=1, pady=5)
+    # global ok_image
+    # ok_image = PhotoImage(file="ok (1).png")
+    # ok_image_button = Button(my_frame, image=ok_image, bg=GREY, highlightthickness=0,
+    #                             command=ok, border=0)
+    # ok_image_button.grid(row=1, column=2)
+if __name__ == "__main__":
+    window()
+    # run the application
+    root.mainloop()
 
