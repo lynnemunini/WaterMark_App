@@ -152,7 +152,7 @@ main_window.place(x=0, y=0)
 
 # Get started button
 get_started = Button(root, height=2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
-get_started.place(x = 70, y = 450)
+get_started.place(x = 50, y = 450)
 
 # run the application
 root.mainloop()
