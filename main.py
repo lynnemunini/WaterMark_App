@@ -8,7 +8,7 @@ import os
 root = Tk()
 root.title('Upload Image')
 root.resizable(False, False)
-root.geometry("850x800")
+root.geometry("800x800")
 root.configure(bg='white')
 
 # get the screen size
@@ -20,7 +20,7 @@ menubar = Menu(root, background="#464646", borderwidth=0, fg="white", activeback
 root.config(menu=menubar)
 
 # Add image file
-bg_image = ImageTk.PhotoImage(file = "backgound.png")
+bg_image = ImageTk.PhotoImage(file = "background.png")
 # create the file_menu
 file_menu = Menu(
     menubar,
@@ -103,22 +103,25 @@ def get_image():
                 title='Open a file',
                 initialdir='~',
                 filetypes=filetypes)
+        # print(root.filename)
+        if root.filename is not None and root.filename != "" and root.filename != ():
+            main_window.destroy()
+            get_started.destroy()
 
-        # Picture name 
-        global pic_name
-        pic_name = root.filename.split('/')[-1]
-        global my_image
-        my_image = Image.open(root.filename)
-        if my_image.width > scr_width or my_image.height > scr_height:
-                # only resize image bigger than the screen
-                ratio = min(scr_width/my_image.width, scr_height/my_image.height)
-                my_image = my_image.resize((int(my_image.width*ratio), int(my_image.height*ratio)), Image.ANTIALIAS)
-        my_image = ImageTk.PhotoImage(my_image)  
+            # Picture name 
+            global pic_name, my_image
+            pic_name = root.filename.split('/')[-1]
+            my_image = Image.open(root.filename)
+            if my_image.width > scr_width or my_image.height > scr_height:
+                    # only resize image bigger than the screen
+                    ratio = min(scr_width/my_image.width, scr_height/my_image.height)
+                    my_image = my_image.resize((int(my_image.width*ratio), int(my_image.height*ratio)), Image.ANTIALIAS)
+            my_image = ImageTk.PhotoImage(my_image)  
 
-        #Image Canvas
-        image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
-        image_canvas.create_image(400, 400, image=my_image)
-        image_canvas.grid(row = 0, column = 0, columnspan=2)
+            #Image Canvas
+            image_canvas = Canvas(width=800, height=800, bg="white", highlightthickness=0)
+            image_canvas.create_image(400, 400, image=my_image)
+            image_canvas.pack()
 
 
 def open():
@@ -141,14 +144,14 @@ def save():
         imgpil.close()  
 
 
-label = Label(
+main_window = Label(
     root,
     image=bg_image
 )
-label.place(x=0, y=0)
+main_window.place(x=0, y=0)
 
 # Get started button
-get_started = Button(root, height= 2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
+get_started = Button(root, height=2, width=10, text="Get Started", fg="black", background='#e46c4e', activebackground='#464646', font=("Poppins"), command=open)
 get_started.place(x = 70, y = 450)
 
 # run the application
