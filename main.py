@@ -69,6 +69,8 @@ edit_menu = Menu(
 edit_menu.add_command(label='Change Image',
                 command=lambda: change_image()
 )
+edit_menu.add_command(label='Add WaterMark')
+
 
 # add the File menu to the menubar
 menubar.add_cascade(
@@ -98,6 +100,7 @@ menubar.add_cascade(
 # Functions
 def get_image():    
         edit_menu.entryconfig("Change Image", state="normal")#Enable Menu Option
+        edit_menu.entryconfig("Add WaterMark", state="normal")#Enable Menu Option
         file_menu.entryconfig("Save", state="normal")#Enable Menu Option
         file_menu.entryconfig("Close", state="normal")#Enable Menu Option  
          
@@ -140,11 +143,12 @@ def open():
 
 def change_image():
     try:
-        image_canvas.destroy()
+        image_display = image_canvas
     except:
         pass
     else:
         get_image()
+        image_display.destroy()
 
 
 # open and ask to save file
@@ -156,6 +160,7 @@ def save():
 def window():
     global main_window, get_started
     edit_menu.entryconfig("Change Image", state="disabled")#Disable Menu Option
+    edit_menu.entryconfig("Add WaterMark", state="disabled")#Enable Menu Option
     file_menu.entryconfig("Save", state="disabled")#Disable Menu Option
     file_menu.entryconfig("Close", state="disabled")#Disable Menu Option
     
@@ -178,24 +183,6 @@ def close():
     else:
         window()
 
-# def edit():
-#     global pop
-#     pop = Toplevel(window)
-#     pop.geometry("510x100")
-#     pop.config(bg="white")
-
-    # if len(my_website) == 0 or len(my_password) == 0:
-    # pop.title("Oops!")
-    # pop_label = Label(pop, text="You have to select a file first.", bg=GREY,
-    #                     font=("courier", 12, "normal"))
-    # pop_label.grid(row=0, column=1, pady=10)
-    # my_frame = Frame(pop, bg=GREY)
-    # my_frame.grid(row=1, column=1, pady=5)
-    # global ok_image
-    # ok_image = PhotoImage(file="ok (1).png")
-    # ok_image_button = Button(my_frame, image=ok_image, bg=GREY, highlightthickness=0,
-    #                             command=ok, border=0)
-    # ok_image_button.grid(row=1, column=2)
 if __name__ == "__main__":
     window()
     # run the application
