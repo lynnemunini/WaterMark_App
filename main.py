@@ -118,8 +118,18 @@ def get_image():
             get_started.destroy()
 
             # Picture name 
-            global pic_name, my_image, image_canvas
-            pic_name = root.filename.split('/')[-1]
+            global pic_name, my_image, image_canvas, format
+            pic_path_list = root.filename.split('.')
+
+            # Get format to save image in           
+            format = pic_path_list[-1]
+            # if format == 'jpg':
+            #     format = 'jpeg'
+
+            pic_path = pic_path_list[0]
+            path_list = pic_path.split('/')
+            pic_name = path_list[-1]
+            print(pic_name)
             my_image = Image.open(root.filename)
             if my_image.width > scr_width or my_image.height > scr_height:
                     # only resize image bigger than the screen
@@ -154,7 +164,7 @@ def change_image():
 # open and ask to save file
 def save():
         imgpil = ImageTk.getimage(my_image)
-        imgpil.save( os.path.join("/home/lynne/Pictures", pic_name), "png" )
+        imgpil.save( os.path.join("/home/lynne/Pictures/Editor", pic_name), "png")
         imgpil.close()  
 
 def window():
@@ -188,3 +198,4 @@ if __name__ == "__main__":
     # run the application
     root.mainloop()
 
+# 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
