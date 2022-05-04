@@ -43,15 +43,33 @@ x = 17
 # print(xreversed_str)   
 
 # print(x_str == xreversed_str)
-num = 0
+# num = 0
 
-while x > 0:
-    remainder = x % 10
-    x = x // 10
-    num = (num * 10) + remainder
+# while x > 0:
+#     remainder = x % 10
+#     x = x // 10
+#     num = (num * 10) + remainder
 
-if x == num:
-    print("true")
-else:
-    print("false")
+# if x == num:
+#     print("true")
+# else:
+#     print("false")
 # print(num)
+
+def longestCommonPrefix(strs):
+    """
+    :type strs: List[str]
+    :rtype: str
+    """
+
+    # To get the longest string in a list
+    res = min(strs, key = len)
+    print(len(res))
+    for i in strs:
+        string = ""
+        for j in range(len(res)):
+            if i[j] == res[j]:
+                string += res[j]
+    return string
+
+print(longestCommonPrefix(["flower","flow","flight"]))
